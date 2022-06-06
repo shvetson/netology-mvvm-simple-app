@@ -10,26 +10,22 @@ import ru.shvets.simplemvvm.views.screen.base.BaseFragment
 import ru.shvets.simplemvvm.views.screen.base.BaseScreen
 import ru.shvets.simplemvvm.views.screen.base.screenViewModel
 
-class HelloFragment : BaseFragment(){
+class HelloFragment : BaseFragment() {
+
     class Screen : BaseScreen
 
     override val viewModel by screenViewModel<HelloViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentHelloBinding.inflate(inflater, container, false)
 
-        binding.editButton.setOnClickListener{
-            viewModel.onEditPressed()
-        }
+        binding.editButton.setOnClickListener { viewModel.onEditPressed() }
 
-        viewModel.currentMessageLivedata.observe(viewLifecycleOwner) {
+        viewModel.currentMessageLiveData.observe(viewLifecycleOwner) {
             binding.valueTextView.text = it
         }
 
         return binding.root
     }
+
 }
